@@ -1,4 +1,4 @@
-nname: Criar EXE
+name: Criar EXE
 
 on:
   workflow_dispatch:
