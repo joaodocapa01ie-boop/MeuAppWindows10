@@ -1,0 +1,29 @@
+name: Criar EXE
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Baixar projeto
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar PyInstaller
+        run: pip install pyinstaller
+
+      - name: Criar EXE
+        run: pyinstaller --onefile --windowed main.py
+
+      - name: Disponibilizar EXE
+        uses: actions/upload-artifact@v4
+        with:
+          name: MeuAppWindows
+          path: dist/main.exe
